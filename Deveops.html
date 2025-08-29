@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none';">
+    <title>Secure DevSecOps Example</title>
+    <script src="https://www.example.com/secure-script.js" defer></script>
+</head>
+<body>
+    <h1>Welcome to Secure Web Application</h1>
+
+    <!-- Example of CSRF protection -->
+    <form action="/submit" method="POST">
+        <input type="hidden" name="csrf_token" value="secure_token_value">
+        <input type="text" name="username" required>
+        <input type="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Prevent XSS via content escaping -->
+    <div id="userMessage">
+        <!-- Escape user input before rendering -->
+        <script>
+            const message = '<script>alert("XSS Attack!");</script>';
+            document.getElementById('userMessage').innerText = message; // Ensures no script execution
+        </script>
+    </div>
+    
+    <script>
